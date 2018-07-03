@@ -1,0 +1,15 @@
+---
+ - name: create a unique temp container name
+   set_fact:
+     temp_container_name: maogen_build_{{lookup('pipe', 'date "+%s"')}}
+
+ - debug: 
+     var: temp_container_name
+
+ - name: 
+   setup:
+
+ - name: build docker image with ansible
+   command: "docker run -v /tmp/site:/site --name={{ temp_container_name }} debian:latest /site/bootstrap.sh"
+ - name: build docker image with ansible
+   command: "docker run -v /tmp/site:/site --name={{ temp_container_name }} debian:latest ansible-playbook -c local /site/local.yml -t ansible-pull"
