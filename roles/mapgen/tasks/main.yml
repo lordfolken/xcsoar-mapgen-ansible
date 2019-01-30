@@ -19,10 +19,10 @@
      repo: "{{ mapgen_git }}"
      version: "HEAD"
    notify:
-     - restart_mapgen
+    - restart_mapgen
    tags:
-     - skip_ansible_lint
-
+    - skip_ansible_lint
+ 
  - name: install systemd scripts
    copy:
      src: "{{ item }}"
@@ -30,8 +30,13 @@
    loop:
      - mapgen-web.service
      - mapgen-worker.service
+   register: mapgen_services
    notify:
      - restart_mapgen
+
+ - name: reload systemd
+   systemd:
+     daemon_reload: true
 
  - name: enable both services and start them
    service:
