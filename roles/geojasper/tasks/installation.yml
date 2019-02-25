@@ -2,7 +2,6 @@
   - name: ensure depencies are installed
     package:
       name: "{{ geojasper_build_dependencies }}"
-    loop:
 
   - name: geojasper create installdir
     file:
