@@ -1,4 +1,0 @@
-geojasper_build_dependencies:
-  - unzip
-  - libjpeg62-dev
-  - build-essential
